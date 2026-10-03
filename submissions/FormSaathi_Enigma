@@ -1,0 +1,69 @@
+Project Name [FormSaathi]
+Team / attendee 
+Team name (if applicable): [Enigma]
+Members and GitHub usernames: ShifaMaheen21 & QansaNoorain29
+Profile links (optional):
+Challenge
+Select the challenge you are entering:
+ Best Use of Gemma 4
+ 
+If listing multiple categories, confirm eligibility with the organizers and complete evidence for each.
+
+Project links
+Public GitHub repository: https://github.com/ShifaMaheen21/FormSaathi
+Open-source license (link to the license file): https://github.com/ShifaMaheen21/FormSaathi#-license
+Problem and solution
+Who is this for? What problem does it solve? Describe the main input → output workflow.
+FormSaathi is for first-time applicants and people who find government forms confusing or hard to read, including those who are more comfortable in Hindi or Telugu than English. Small mistakes, like a wrong spelling or a missing document, can lead to rejection or delays.
+
+Workflow: the user uploads a photo of a form (or captures one with the camera) and picks English, Hindi or Telugu. Gemma 4 reads the form directly from the image and returns what the form is for, what each field means and how to fill it, the documents needed, common mistakes, and step-by-step instructions. The user can listen to the explanation with a voice button, tick the documents they already have to see what is still missing, and download a checklist.
+Approach and technologies
+The photo is resized with Pillow and sent to gemma-4-31b-it through the Gemini API (google-genai SDK), along with a prompt that asks for a fixed JSON structure in the user's chosen language. The prompt tells the model to use only what is visible and to flag a non-form image. The app parses the JSON, fills in missing keys, and shows it in a Streamlit interface. Results are cached so repeated inputs do not spend API calls, and a pre-saved sample result works as a fallback when the API is unavailable. The voice button turns the summary, documents and common mistakes into speech with gTTS.
+
+Why Gemma 4: it understands the form image and explains it in the user's language in one step, so no separate OCR or template system is needed.
+
+Libraries used: Streamlit, google-genai, Pillow, python-dotenv, gTTS.
+
+AI-assisted development: [Claude (Anthropic) was used to help plan the project and write the initial code, prompt and documentation. Our team tested and ran the app.] (Ye line sach likho. Jitna kaam aapne khud kiya, wo bhi add karo.)
+Challenge evidence
+Best Use of Gemma 4
+
+Gemma 4 model identifier and Gemini API integration:
+Model: gemma-4-31b-it, called through the Gemini API using the google-genai Python SDK (client.models.generate_content with the form image and prompt).
+
+Code link showing the integration: (https://formsaathi.streamlit.app/)
+
+
+Best Use of Gemma 4
+Gemma 4 model identifier and Gemini API integration:
+Code link showing the integration: https://formsaathi.streamlit.app/
+Input and useful output; multimodal value where applicable:
+Editing workflow / idea direction and elah version:
+Model/runtime and structured-edit implementation:
+Validation/correction metrics, caption/frame checks, or keep/discard/replay evidence for your option.
+Current status
+What works:
+
+Photo upload and camera input
+Gemma 4 reads the form and returns structured results in English, Hindi or Telugu (sirf wahi language likho jo aapne test ki hain)
+Ticking documents to see ready and missing ones
+Checklist download
+Voice button
+Result caching and a "Try sample" fallback
+Known limitations / incomplete features: AI can make mistakes, so users must verify on the official website before submitting
+Works best with clear, single-page forms
+Free-tier API rate limits can slow down repeated tests
+Voice needs an internet connection, and its Hindi/Telugu quality depends on the model writing in the right script
+Not tested on a wide range of forms yet
+What you would improve next: AI can make mistakes, so users must verify on the official website before submitting
+Works best with clear, single-page forms
+Free-tier API rate limits can slow down repeated tests
+Voice needs an internet connection, and its Hindi/Telugu quality depends on the model writing in the right script
+Not tested on a wide range of forms yet
+Submission checklist
+ Project repository is public and links work.
+ Required challenge evidence is included.
+ Project uses an open-source license where required by the challenge.
+ Work and reused materials are represented honestly.
+ No API keys, tokens, passwords, or private data are included.
+ I followed the organizers' build window and submission instructions.
